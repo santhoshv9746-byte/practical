@@ -1,67 +1,91 @@
-<input type="number" id="weight" placeholder="Enter baggage weight">
-<button onclick="check()">Check</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baggage Weight Checker</title>
+</head>
+<body>
 
-<br><br>
+    <input type="number" id="weight" placeholder="Enter baggage weight">
+    <button onclick="checkWeight()">Check</button>
 
-<input type="number" id="removed" placeholder="Remove weight" style="display:none;">
-<button id="remB" onclick="removeWeight()" style="display:none;">Remove</button>
+    <br><br>
 
-<script>
-let maxWeight = 15;
+    <input type="number" id="removed" placeholder="Remove weight" style="display:none;">
+    <button id="remB" onclick="removeWeight()" style="display:none;">Remove</button>
 
-let check = () => {
+    <script>
 
-    let weight =
-        parseFloat(
-            document.getElementById('weight').value
-        );
+        let maxWeight = 15;
 
-    if (isNaN(weight)) {
-        alert("Please enter a valid weight");
-        return;
-    }
+        function checkWeight() {
 
-    if (weight > maxWeight) {
+            let weight = parseFloat(
+                document.getElementById('weight').value
+            );
 
-        alert("Overweight baggage!");
+            if (isNaN(weight) || weight < 0) {
+                alert("Please enter a valid weight");
+                return;
+            }
 
-        document.getElementById('removed').style.display = 'block';
+            if (weight > maxWeight) {
 
-        document.getElementById('remB').style.display = 'block';
+                alert("Overweight baggage!");
 
-    }
-    else {
+                document.getElementById('removed').style.display = 'inline';
 
-        alert("Weight is OK");
+                document.getElementById('remB').style.display = 'inline';
 
-    }
-}
+            } else {
 
-let removeWeight = () => {
+                alert("Weight is OK");
 
-    let weight =
-        parseFloat(
-            document.getElementById('weight').value
-        );
+                document.getElementById('removed').style.display = 'none';
 
-    let removed =
-        parseFloat(
-            document.getElementById('removed').value
-        );
+                document.getElementById('remB').style.display = 'none';
+            }
+        }
 
-    let newWeight = weight - removed;
+        function removeWeight() {
 
-    document.getElementById('weight').value = newWeight;
+            let weight = parseFloat(
+                document.getElementById('weight').value
+            );
 
-    if (newWeight <= maxWeight) {
+            let removed = parseFloat(
+                document.getElementById('removed').value
+            );
 
-        alert("Now OK to proceed");
+            if (isNaN(removed) || removed <= 0) {
+                alert("Enter a valid weight to remove");
+                return;
+            }
 
-    }
-    else {
+            let newWeight = weight - removed;
 
-        alert("Still overweight");
+            if (newWeight < 0) {
+                newWeight = 0;
+            }
 
-    }
-}
-</script>
+            document.getElementById('weight').value = newWeight;
+
+            if (newWeight <= maxWeight) {
+
+                alert("Now OK to proceed");
+
+                document.getElementById('removed').style.display = 'none';
+
+                document.getElementById('remB').style.display = 'none';
+
+            } else {
+
+                alert("Still overweight");
+            }
+        }
+
+    </script>
+
+</body>
+</html>
