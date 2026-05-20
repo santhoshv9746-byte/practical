@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Exercises</title>
 
     <!-- Load JS files -->
@@ -15,18 +18,26 @@
     <!-- ================= EXERCISE 1 ================= -->
     <h1>Exercise 1 - Baggage Check</h1>
 
-    <input type="text" id="weight" placeholder="Enter baggage weight">
+    <input type="number" id="weight" placeholder="Enter baggage weight">
 
-    <button onclick="check()">Check Baggage</button>
+    <button onclick="checkWeight()">
+        Check Baggage
+    </button>
 
     <br><br>
 
-    <input type="text" id="removed" placeholder="Enter weight to remove" style="display:none;">
+    <input type="number"
+           id="removed"
+           placeholder="Enter weight to remove"
+           style="display:none;">
 
-    <button id="remB" onclick="removeWeight()" style="display:none;">
-        Remove baggage
+    <button id="remB"
+            onclick="removeWeight()"
+            style="display:none;">
+        Remove Baggage
     </button>
 
+    <hr>
 
     <!-- ================= EXERCISE 2 ================= -->
     <h1>Exercise 2 - Project Euler</h1>
@@ -37,14 +48,15 @@
 
     <br><br>
 
-    <input type="text" id="a" placeholder="A">
-    <input type="text" id="b" placeholder="B">
-    <input type="text" id="n" placeholder="N">
+    <input type="number" id="a" placeholder="A">
+    <input type="number" id="b" placeholder="B">
+    <input type="number" id="n" placeholder="N">
 
     <button onclick="eulerCustom()">
         Custom Sum of Multiples
     </button>
 
+    <hr>
 
     <!-- ================= EXERCISE 3 ================= -->
     <h1>Exercise 3 - Lists</h1>
@@ -59,11 +71,17 @@
         Run Part 1
     </button>
 
+    <br><br>
 
     <h3>Part 2 & 3</h3>
 
-    <input type="text" id="aList" placeholder="A list (space separated)">
-    <input type="text" id="mList" placeholder="L list (space separated)">
+    <input type="text"
+           id="aList"
+           placeholder="A list (space separated)">
+
+    <input type="text"
+           id="mList"
+           placeholder="M list (space separated)">
 
     <button onclick="euler2Lists()">
         Run Part 2
@@ -73,14 +91,40 @@
         Run Part 3
     </button>
 
-    <user-card name="Surya" avatar="https://i.pinimg.com/originals/34/b4/03/34b403bd28e78a85e5a2f6b592c84e45.jpg">
-    <div slot="email">surya@gmail.com</div>
-    <div slot="phone">+91-9439847583</div>
-  </user-card>
-  <user-card name="Vijay" avatar="https://i.pinimg.com/736x/39/56/34/3956343feab920b59d7e58c7940b7d03.jpg">
-    <div slot="email">josephvijay@gmail.com</div>
-    <div slot="phone">+91-9847845748</div>
-  </user-card>
+    <hr>
+
+    <!-- ================= USER CARDS ================= -->
+
+    <user-card
+        name="Surya"
+        avatar="https://i.pinimg.com/originals/34/b4/03/34b403bd28e78a85e5a2f6b592c84e45.jpg">
+
+        <div slot="email">
+            surya@gmail.com
+        </div>
+
+        <div slot="phone">
+            +91-9439847583
+        </div>
+
+    </user-card>
+
+    <br><br>
+
+    <user-card
+        name="Vijay"
+        avatar="https://i.pinimg.com/736x/39/56/34/3956343feab920b59d7e58c7940b7d03.jpg">
+
+        <div slot="email">
+            josephvijay@gmail.com
+        </div>
+
+        <div slot="phone">
+            +91-9847845748
+        </div>
+
+    </user-card>
 
 </body>
+
 </html>
