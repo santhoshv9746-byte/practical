@@ -1,89 +1,23 @@
-let listEuler1 = (a, b, l) => {
+let listEuler1 = (a, b, l) => l.filter(x => x % a === 0 || x % b === 0).reduce((sum, x) => sum + x, 0);
 
-    let sum = 0;
+let listEuler2 = (a, l) => l.filter(x => x % a[0] === 0 || x % a[1] === 0).reduce((sum, x) => sum + x, 0);
 
-    for (let x of l) {
-
-        if (x % a === 0 || x % b === 0) {
-            sum += x;
-        }
-    }
-
-    return sum;
-}
-
-let listEuler2 = (a, l) => {
-
-    let sum = 0;
-
-    for (let x of l) {
-
-        for (let m of a) {
-
-            if (x % m === 0) {
-
-                sum += x;
-                break;
-            }
-        }
-    }
-
-    return sum;
-}
-
-let listEuler3 = (a, l) => {
-
-    return l
-        .filter(x => a.some(m => x % m === 0))
-        .reduce((acc, val) => acc + val, 0);
-}
+let listEuler3 = (a, l) => l.filter(x => a.some(d => x % d === 0)).reduce((sum, x) => sum + x, 0);
 
 let eulerlist = () => {
-
-    let a =
-        parseInt(
-            document.getElementById('a1').value
-        );
-
-    let b =
-        parseInt(
-            document.getElementById('b1').value
-        );
-
-    let l =
-        document.getElementById('l').value
-            .split(" ")
-            .map(x => parseInt(x));
-
-    alert(listEuler1(a, b, l));
-}
+    const a = 2, b = 3;
+    const l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
+    alert(`Sum of multiples of ${a} or ${b} in list: ${listEuler1(a, b, l)}`);
+};
 
 let euler2Lists = () => {
-
-    let a =
-        document.getElementById('aList').value
-            .split(" ")
-            .map(x => parseInt(x));
-
-    let l =
-        document.getElementById('mList').value
-            .split(" ")
-            .map(x => parseInt(x));
-
-    alert(listEuler2(a, l));
-}
+    const a = [2, 3];
+    const l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
+    alert(`Sum of multiples of [${a}] in list: ${listEuler2(a, l)}`);
+};
 
 let euler2Lists1 = () => {
-
-    let a =
-        document.getElementById('aList').value
-            .split(" ")
-            .map(x => parseInt(x));
-
-    let l =
-        document.getElementById('mList').value
-            .split(" ")
-            .map(x => parseInt(x));
-
-    alert(listEuler3(a, l));
-}
+    const a = [2, 3, 5];
+    const l = [1, 2, 3, 4, 5, 6, 7, 9, 10, 10, 10];
+    alert(`Sum of multiples of [${a}] in list: ${listEuler3(a, l)}`);
+};
