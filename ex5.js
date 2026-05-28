@@ -1,27 +1,39 @@
-    let parse=(i)=>{
-      o=parseInt(i)
-      if (isNaN(o))
-        throw("NaN");
-      return o;
+let parse = (i) => {
+    const o = parseInt(i);
+    if (isNaN(o)) throw("NaN");
+    return o;
+};
+
+let listEuler3 = (a, l) => l.filter(x => a.some(d => x % d === 0)).reduce((sum, x) => sum + x, 0);
+
+// Version 1: prepend "corrupt" on any error
+let parseAndSolveCorrupt = (input) => {
+    try {
+        const [factorsPart, multiplesPart] = input.split(':').map(s => s.trim());
+        if (multiplesPart === undefined) throw("No colon separator found");
+        const factors  = factorsPart.split(' ').map(parse);
+        const multiples = multiplesPart.split(' ').map(parse);
+        const result = listEuler3(factors, multiples);
+        return `${result} : ${factorsPart} : ${multiplesPart}`;
+    } catch {
+        return `corrupt : ${input}`;
     }
-    
-//Create a modified version of ex4 that prepends "corrupt" where an error occurs
+};
 
-//Examples ()
-// 2 3 5 67
-// corrupt : 2 3 5 67
+// Version 2: skip corrupt values and still resolve, or "corrupt" if unresolvable
+let parseAndSolveFix = (input) => {
+    const parts = input.split(':').map(s => s.trim());
+    if (parts.length < 2) return `corrupt : ${input}`;        // no colon — unresolvable
 
-//Actually this one will not result in an error unless you throw one as in parse(i) above:
-// 3 5 hello: 1 2 3 4 5 6 7 8 9
-// corrupt : 3 5 hello: 1 2 3 4 5 6 7 8 9
+    const [factorsPart, multiplesPart] = parts;
+    const factors   = factorsPart.split(' ').map(parse).filter(x => !isNaN(x));
+    // wrap individually so bad values are filtered rather than throwing
+    const safeMap = (str) => str.split(' ').flatMap(i => { try { return [parse(i)]; } catch { return []; } });
+    const multiples = safeMap(multiplesPart);
+    const fFactors  = safeMap(factorsPart);
 
-//Create a further version that will output the answer omitting corrupted values
-//or "corrupt" if it cannot be resolved
+    if (fFactors.length === 0) return `corrupt : ${input}`;   // no valid factors — unresolvable
 
-// 3 5 hello: 1 2 3 4 5 6 7 8 9
-// 23 : 3 5 hello: 1 2 3 4 5 6 7 8 9
-
-//this cannot be fixed - actually this is the only one that will throw errors
-// 2 3 5 67
-// corrupt : 2 3 5 67
-
+    const result = listEuler3(fFactors, multiples);
+    return `${result} : ${factorsPart} : ${multiplesPart}`;
+};
