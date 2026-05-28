@@ -1,74 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Exercises</title>
-
-    <!-- Load JS files -->
     <script src="ex1.js" defer></script>
+    <script src="ex2.js" defer></script>
     <script src="ex7.js" defer></script>
+    <style>
+        body { font-family: sans-serif; max-width: 700px; margin: 2em auto; padding: 0 1em; }
+        input { margin: 0.25em 0; padding: 0.4em; }
+        button { margin: 0.25em; padding: 0.4em 0.8em; cursor: pointer; }
+        p.output { font-weight: bold; color: #333; min-height: 1.2em; }
+        hr { margin: 2em 0; }
+    </style>
 </head>
-
 <body>
 
     <!-- ================= EXERCISE 1 ================= -->
-    <h1>Exercise 1 - Baggage Check</h1>
-
-    <input type="number" id="weight" placeholder="Enter baggage weight">
-
-    <button onclick="checkWeight()">
-        Check Baggage
-    </button>
-
+    <h1>Exercise 1 — Baggage Check</h1>
+    <input type="number" id="weight" placeholder="Enter baggage weight (kg)">
+    <button onclick="checkWeight()">Check Baggage</button>
     <br><br>
+    <input type="number" id="removed" placeholder="Enter weight to remove (kg)" style="display:none;">
+    <button id="remB" onclick="removeWeight()" style="display:none;">Remove Baggage</button>
+    <p class="output" id="ex1Out"></p>
+    <hr>
 
-    <input type="number"
-           id="removed"
-           placeholder="Enter weight to remove"
-           style="display:none;">
+    <!-- ================= EXERCISE 2 ================= -->
+    <h1>Exercise 2 — Project Euler Q1</h1>
+    <button onclick="euler1()">Sum of multiples of 3 or 5 below 1000</button>
+    <br><br>
+    <label>A <input type="number" id="a" placeholder="e.g. 3"></label>
+    <label>B <input type="number" id="b" placeholder="e.g. 5"></label>
+    <label>N <input type="number" id="n" placeholder="e.g. 1000"></label>
+    <button onclick="eulerCustom()">Custom sum of multiples of A or B below N</button>
+    <p class="output" id="ex2Out"></p>
+    <hr>
 
-    <button id="remB"
-            onclick="removeWeight()"
-            style="display:none;">
-        Remove Baggage
-    </button>
+    <!-- ================= EXERCISE 3 ================= -->
+    <h1>Exercise 3 — Multiples in a List</h1>
+    <label>A <input type="number" id="a1" placeholder="e.g. 3"></label>
+    <label>B <input type="number" id="b1" placeholder="e.g. 5"></label>
+    <label>L <input type="text"   id="l"  placeholder="e.g. 1 2 3 4 5 6 7 8 9"></label>
+    <button onclick="eulerlist()">Sum multiples of A or B in L</button>
+    <br><br>
+    <label>A (list) <input type="text" id="aList"  placeholder="e.g. 2 3 5"></label>
+    <label>L        <input type="text" id="mList"  placeholder="e.g. 1 2 3 4 5 6 7 8 9"></label>
+    <button onclick="euler2Lists()">Sum (A length 2)</button>
+    <button onclick="euler2Lists1()">Sum (A any length)</button>
+    <p class="output" id="ex3Out"></p>
+    <hr>
 
+    <!-- ================= EXERCISE 4 ================= -->
+    <h1>Exercise 4 — Parse &amp; Solve</h1>
+    <p>Format: <code>3 5 : 1 2 3 4 5 6 7 8 9</code></p>
+    <input type="text" id="ex4Input" style="width:400px;" placeholder="factors : multiples">
+    <button onclick="runEx4('ex4Input','ex4Out')">Solve</button>
+    <p class="output" id="ex4Out"></p>
+    <hr>
+
+    <!-- ================= EXERCISE 5 ================= -->
+    <h1>Exercise 5 — Corrupt Handling</h1>
+    <p>Format: <code>3 5 hello : 1 2 3 4 5 6 7 8 9</code></p>
+    <input type="text" id="ex5Input" style="width:400px;" placeholder="factors : multiples">
+    <button onclick="runEx5Corrupt('ex5Input','ex5Out')">Solve (mark corrupt)</button>
+    <button onclick="runEx5Fix('ex5Input','ex5Out')">Solve (skip corrupt)</button>
+    <p class="output" id="ex5Out"></p>
+    <hr>
+
+    <!-- ================= EXERCISE 6 ================= -->
+    <h1>Exercise 6 — GitHub Most Forked Repo</h1>
+    <input type="text" id="ghUser" placeholder="GitHub username">
+    <button onclick="checkUser()">Search</button>
+    <p class="output" id="ghOutput"></p>
     <hr>
 
     <!-- ================= USER CARDS ================= -->
-
+    <h1>User Cards</h1>
     <user-card
         name="Surya"
         avatar="https://i.pinimg.com/originals/34/b4/03/34b403bd28e78a85e5a2f6b592c84e45.jpg">
-
-        <div slot="email">
-            surya@gmail.com
-        </div>
-
-        <div slot="phone">
-            +91-9439847583
-        </div>
-
+        <div slot="email">surya@gmail.com</div>
+        <div slot="phone">+91-9439847583</div>
     </user-card>
-
     <br><br>
-
     <user-card
         name="Vijay"
         avatar="https://i.pinimg.com/736x/39/56/34/3956343feab920b59d7e58c7940b7d03.jpg">
-
-        <div slot="email">
-            josephvijay@gmail.com
-        </div>
-
-        <div slot="phone">
-            +91-9847845748
-        </div>
-
+        <div slot="email">josephvijay@gmail.com</div>
+        <div slot="phone">+91-9847845748</div>
     </user-card>
 
-</body>
+    <script>
+        // ── Ex 4 & 5 wrappers ── output to page instead of alert
+        let runEx4 = (inId, outId) =>
+            document.getElementById(outId).textContent = parseAndSolve(document.getElementById(inId).value);
 
+        let runEx5Corrupt = (inId, outId) =>
+            document.getElementById(outId).textContent = parseAndSolveCorrupt(document.getElementById(inId).value);
+
+        let runEx5Fix = (inId, outId) =>
+            document.getElementById(outId).textContent = parseAndSolveFix(document.getElementById(inId).value);
+    </script>
+</body>
 </html>
