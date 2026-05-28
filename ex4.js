@@ -1,16 +1,10 @@
-///////Create a function to read a string of the form:
-// factors : multiples
-//and output a string:
-// result : factors : multiples
+// Reuse listEuler3 — the most general form
+let listEuler3 = (a, l) => l.filter(x => a.some(d => x % d === 0)).reduce((sum, x) => sum + x, 0);
 
-//where factors and multiples are space separated lists of integers
-
-// Example Input : 
-// 3 5 : 1 2 3 4 5 6 7 8 9
-
-// Example Output : 
-// 23 : 3 5 : 1 2 3 4 5 6 7 8 9
-
-//keep code DRY (Don't repeat yourself)
-
-//if you're finished, code it into a page
+let parseAndSolve = (input) => {
+    const [factorsPart, multiplesPart] = input.split(':').map(s => s.trim());
+    const factors = factorsPart.split(' ').map(Number);
+    const multiples = multiplesPart.split(' ').map(Number);
+    const result = listEuler3(factors, multiples);
+    return `${result} : ${factorsPart} : ${multiplesPart}`;
+};
