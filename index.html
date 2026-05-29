@@ -16,58 +16,79 @@
     <!-- ================= EXERCISE 1 ================= -->
     <h1>Exercise 1 - Baggage Check</h1>
     <input type="number" id="weight" placeholder="Enter baggage weight">
-    <button onclick="checkWeight()">
-        Check Baggage
-    </button>
+<button onclick="checkBaggage()">
+    Check Baggage
+</button>
     <br><br>
     <input type="number"
            id="removed"
            placeholder="Enter weight to remove"
            style="display:none;">
-    <button id="remB"
-            onclick="removeWeight()"
-            style="display:none;">
-        Remove Baggage
-    </button>
+<button id="remB"
+        onclick="removeBaggage()"
+        style="display:none;">
+    Remove Baggage
+</button>
 
-    <h1>Exercise 2</h1>
-    <p><button onclick="euler1()">Press for solution to project Euler</button>
+        <!-- ================= EXERCISE 2 ================= -->
+<h1>Exercise 2</h1>
+<p>
+    <button onclick="euler1()">Press for solution to project Euler</button>
 </p>
 
 <p>
-       <label for="a:">A</label> <input type="text" id="a">
-        <label for="b:">B</label><input type="text" id="b">
-       <label for="n:">N</label> <input type="text" id="n">
-
-</p>
-    <p><button onclick="eulerCustom()">Press for custom sum of multiples</button> 
-        Find the sum of multiples of a or b less than n, where a,b and n are integer parameters
-
- <h1>Exercise 3</h1>
-<p>
-Sum of multiples of a or b in list l.
-       <label for="a:">A</label> <input type="text" id="a1"><br>
-        <label for="b:">B</label><input type="text" id="b1"><br>
-       <label for="l:">L</label> <input type="text" id="l">
-
-</p>
-    <p><button onclick="eulerlist()">Press for solution to project Euler</button>
+    <label for="a">A</label> <input type="text" id="a">
+    <label for="b">B</label> <input type="text" id="b">
+    <label for="n">N</label> <input type="text" id="n">
 </p>
 
 <p>
- 
+    <button onclick="eulerCustom()">Press for custom sum of multiples</button> 
+    Find the sum of multiples of a or b less than n, where a,b and n are integer parameters
+</p>
+
+<h1>Exercise 3</h1>
+<p>
+    Sum of multiples of a or b in list l.
+    <label for="a1">A</label> <input type="text" id="a1"><br>
+    <label for="b1">B</label> <input type="text" id="b1"><br>
+    <label for="l">L</label> <input type="text" id="l">
+</p>
+<p>
+    <button onclick="eulerlist()">Press for solution to project Euler</button>
+</p>
+
+<p>
     Part 2: compute the sum of multiples of elements in list a, found in list l. List a is of length 2
     <br>
     Part 3: compute the sum of multiples of elements in list a, found in list l. List a may be any length
-       <label for="aList:">A</label> <input type="text" id="aList">
-        <label for="mList:">L</label> <input type="text" id="mList">
-
+    <label for="aList">A</label> <input type="text" id="aList"><br>
+    <label for="mList">L</label> <input type="text" id="mList">
 </p>
-    <p><button onclick="euler2Lists()">Press for custom sum of multiples</button>
-    <p><button onclick="euler2Lists1()">Press for custom sum of multiples</button>
-
+<p>
+    <button onclick="euler2Lists()">Press for custom sum of multiples</button>
+    <button onclick="euler2Lists1()">Press for custom sum of multiples</button>
+</p>
     
-    <hr>
+  <!-- Exercise 4: result : factors : multiples -->
+  <h2>Exercise 4: result : factors : multiples</h2>
+  <input type="text" id="factorsinput" placeholder="Enter factors : multiples (space separated)" />
+  <button onclick="printresult()">Calculate Result</button>
+  <p id="resultval"></p>
+
+<!-- Exercise 5: Display "corrupt" where an error occurs -->
+  <h2>Exercise 5: Error Handling - 3 Cases</h2>  
+  <input type="text" id="corruptInput" placeholder="Enter data to check (e.g., 3 5:1 2 3 4 5 6 7 8 9)" />
+  <button onclick="checkCorrupt()">Check for Corruption</button>
+  <p id="corruptResult"></p>
+
+  <!-- Exercise 6: GitHub Most Forked Repo -->
+  <h2>Exercise 6: GitHub Repo with Most Forks</h2>
+  <input type="text" id="username" placeholder="Enter GitHub username (e.g., docker)" />
+  <button onclick="findMostForked()">Find Most Forked Repo</button>
+  <p id="repoResult"></p>
+
+
     <!-- ================= USER CARDS ================= -->
     <user-card
         name="Surya"
