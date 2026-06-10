@@ -37,3 +37,10 @@ let parseAndSolveFix = (input) => {
     const result = listEuler3(fFactors, multiples);
     return `${result} : ${factorsPart} : ${multiplesPart}`;
 };
+
+
+function checkCorrupt() {
+    let input = document.getElementById('corruptInput').value;
+    let result = processvalue(input);
+    document.getElementById('corruptResult').textContent = result;
+}
