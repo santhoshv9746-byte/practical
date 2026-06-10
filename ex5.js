@@ -1,14 +1,15 @@
-    let parse = (i) => {
+{
+    const parse = (i) => {
         const o = parseInt(i);
         if (isNaN(o)) throw new Error("NaN");
         return o;
     };
 
-    let sumMultiples = (factors, multiples) =>
+    const sumMultiples = (factors, multiples) =>
         multiples.filter(x => factors.some(d => x % d === 0))
                  .reduce((sum, x) => sum + x, 0);
 
-    function checkCorrupt() {
+    window.checkCorrupt = function() {
         const input = document.getElementById('corruptInput').value;
         const parts = input.split(':');
 
@@ -32,4 +33,5 @@
 
         const result = sumMultiples(factors, multiples);
         document.getElementById('corruptResult').textContent = `${result} : ${factorsPart} : ${multiplesPart}`;
-    }
+    };
+}
